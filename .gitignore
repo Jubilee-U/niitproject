@@ -1,0 +1,13 @@
+# Dependencies
+/vendor/
+
+# Environment (secrets)
+/config/.env
+
+# User uploads (keep the folder, ignore its contents)
+/uploads/*
+!/uploads/.gitkeep
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
