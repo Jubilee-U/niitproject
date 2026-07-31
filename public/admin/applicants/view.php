@@ -78,7 +78,8 @@ $csrfToken = generateCsrfToken();
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Applicant — <?= e($applicant['full_name']) ?></title>
-    <style>
+    <link rel="stylesheet" href="/niitproject/public/assets/style.css">
+    <!-- <style>
         body { font-family: system-ui, sans-serif; margin: 2rem; color: #222; background: #fafafa; }
         main { max-width: 760px; margin: 0 auto; }
         a { color: #2563eb; text-decoration: none; }
@@ -110,9 +111,11 @@ $csrfToken = generateCsrfToken();
         .btn-decline:hover { background: #b91c1c; }
         form.inline { display: inline; margin: 0; }
         .decision-info { margin-top: 1.5rem; font-size: .95rem; color: #444; }
-    </style>
+    </style> -->
 </head>
 <body>
+    <?php include __DIR__ . '/../../../includes/admin_header.php'; ?>
+
     <main>
         <div class="top">
             <h1><?= e($applicant['full_name']) ?></h1>

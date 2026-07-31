@@ -85,7 +85,8 @@ if (!function_exists('e')) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Add Teacher — Admin</title>
-    <style>
+    <link rel="stylesheet" href="/niitproject/public/assets/style.css">
+    <!-- <style>
         body { font-family: system-ui, sans-serif; margin: 2rem; color: #222; background: #fafafa; }
         main { max-width: 520px; margin: 0 auto; }
         h1 { font-size: 1.3rem; }
@@ -103,9 +104,11 @@ if (!function_exists('e')) {
         .errors { background: #fdecec; border: 1px solid #f3b7b7; color: #a12020; padding: .6rem .8rem;
             border-radius: 5px; margin-bottom: 1rem; }
         .form-actions { margin-top: .5rem; display: flex; gap: 1rem; align-items: center; }
-    </style>
+    </style> -->
 </head>
 <body>
+    <?php include __DIR__ . '/../../../includes/admin_header.php'; ?>
+
     <main>
         <h1>Add Teacher</h1>
 

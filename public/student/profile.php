@@ -46,6 +46,7 @@ $appliedTs   = $applicant ? strtotime((string) $applicant['applied_at']) : false
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>My Profile — Student</title>
+    <link rel="stylesheet" href="/niitproject/public/assets/style.css">
     <style>
         body { font-family: system-ui, sans-serif; margin: 0; color: #222; background: #f4f5f7; }
         .topbar { background: #1e293b; color: #fff; padding: .8rem 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .5rem; }
@@ -71,16 +72,17 @@ $appliedTs   = $applicant ? strtotime((string) $applicant['applied_at']) : false
     </style>
 </head>
 <body>
-    <div class="topbar">
+    <?php $navActive = 'dashboard'; include __DIR__ . '/../../includes/student_header.php'; ?>
+    <!-- <div class="topbar">
         <span class="brand">Student Portal</span>
         <nav>
             <a href="dashboard.php">Dashboard</a>
             <a href="profile.php" class="active">Profile</a>
             <a href="subjects.php">Subjects</a>
             <a href="announcements.php">Announcements</a>
-            <a href="/logout.php">Log out</a>
+            <a href="../logout.php">Log out</a>
         </nav>
-    </div>
+    </div> -->
 
     <main>
         <h1>My Profile</h1>

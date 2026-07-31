@@ -80,7 +80,8 @@ $csrfToken = generateCsrfToken();
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Change Password — Student</title>
-    <style>
+    <link rel="stylesheet" href="/niitproject/public/assets/style.css">
+    <!-- <style>
         body { font-family: system-ui, sans-serif; margin: 0; color: #222; background: #f4f5f7; }
         main { max-width: 460px; margin: 2.5rem auto; padding: 0 1rem; }
         h1 { font-size: 1.3rem; }
@@ -96,9 +97,10 @@ $csrfToken = generateCsrfToken();
         .btn:hover { background: #1d4ed8; }
         .errors { background: #fdecec; border: 1px solid #f3b7b7; color: #a12020; padding: .6rem .8rem; border-radius: 5px; margin-bottom: 1rem; }
         .notice { background: #fff7ed; border: 1px solid #fed7aa; color: #9a3412; padding: .7rem .9rem; border-radius: 6px; margin-bottom: 1rem; font-size: .9rem; }
-    </style>
+    </style> -->
 </head>
 <body>
+    <?php $navActive = 'dashboard'; include __DIR__ . '/../../includes/student_header.php'; ?>
     <main>
         <h1>Change Password</h1>
 

@@ -75,7 +75,8 @@ $applicants = $stmt->fetchAll();
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Applicants — Admin</title>
-    <style>
+    <link rel="stylesheet" href="/niitproject/public/assets/style.css">
+    <!-- <style>
         body { font-family: system-ui, sans-serif; margin: 2rem; color: #222; background: #fafafa; }
         main { max-width: 900px; margin: 0 auto; }
         h1 { font-size: 1.4rem; margin: 0 0 1rem; }
@@ -99,9 +100,10 @@ $applicants = $stmt->fetchAll();
         .badge-accepted { background: #dcfce7; color: #166534; }
         .badge-declined { background: #fee2e2; color: #991b1b; }
         .badge-unknown  { background: #eee; color: #555; }
-    </style>
+    </style> -->
 </head>
 <body>
+    <?php include __DIR__ . '/../../../includes/admin_header.php'; ?>
     <main>
         <h1>Applicants</h1>
 

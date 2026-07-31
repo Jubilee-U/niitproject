@@ -12,8 +12,8 @@ startSecureSession();
 $existing = getCurrentUser($pdo);
 if ($existing !== null) {
     header('Location: ' . ($existing['role'] === 'admin'
-        ? 'admin/dashboard.php'
-        : 'student/dashboard.php'));
+        ? '/niitproject/public/admin/dashboard.php'
+        : '/niitproject/public/student/dashboard.php'));
     exit;
 }
 
@@ -37,8 +37,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Re-read the (now authenticated) user to route by role.
             $user = getCurrentUser($pdo);
             header('Location: ' . ($user !== null && $user['role'] === 'admin'
-                ? 'admin/dashboard.php'
-                : 'student/dashboard.php'));
+                ? '/niitproject/public/admin/dashboard.php'
+                : '/niitproject/public/student/dashboard.php'));
             exit; // always exit after a redirect so no page body is emitted
         }
 
@@ -61,22 +61,10 @@ $emailValue = htmlspecialchars((string) ($_POST['email'] ?? ''), ENT_QUOTES, 'UT
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sign in — School Admission System</title>
-    <style>
-        body { font-family: system-ui, sans-serif; background: #f4f5f7; margin: 0; }
-        main { max-width: 22rem; margin: 4rem auto; background: #fff; padding: 2rem;
-               border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,.08); }
-        h1 { font-size: 1.25rem; margin: 0 0 1.25rem; }
-        label { display: block; font-size: .85rem; margin-bottom: 1rem; color: #333; }
-        input { width: 100%; box-sizing: border-box; padding: .55rem .6rem; margin-top: .3rem;
-                border: 1px solid #ccc; border-radius: 5px; font-size: 1rem; }
-        button { width: 100%; padding: .6rem; border: 0; border-radius: 5px;
-                 background: #2563eb; color: #fff; font-size: 1rem; cursor: pointer; }
-        button:hover { background: #1d4ed8; }
-        .error { background: #fdecec; color: #a12020; border: 1px solid #f3b7b7;
-                 padding: .6rem .75rem; border-radius: 5px; font-size: .85rem; margin-bottom: 1rem; }
-    </style>
+    <link rel="stylesheet" href="/niitproject/public/assets/style.css">
 </head>
-<body>
+<body class="auth">
+<?php include __DIR__ . '/../includes/public_header.php'; ?>
     <main>
         <h1>Sign in</h1>
 
@@ -97,7 +85,7 @@ $emailValue = htmlspecialchars((string) ($_POST['email'] ?? ''), ENT_QUOTES, 'UT
                 <input type="password" name="password" required>
             </label>
 
-            <button type="submit">Sign in</button>
+            <button type="submit" class="btn btn-block">Sign in</button>
         </form>
     </main>
 </body>

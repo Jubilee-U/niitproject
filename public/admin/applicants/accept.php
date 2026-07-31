@@ -10,7 +10,7 @@ require_once __DIR__ . '/../../../templates/admission_accepted.php';    // rende
 // Internal domain for school-issued student login identities. These are login
 // identifiers, NOT real mailboxes — students never receive mail here (that goes
 // to their notification address). Change this to your chosen internal domain.
-const STUDENT_LOGIN_DOMAIN = 'students.yourschool.local';
+const STUDENT_LOGIN_DOMAIN = 'students.brighthousecollege.local';
 
 // POST only.
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {

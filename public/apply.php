@@ -269,9 +269,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $confirmationRef === null) {
         $errors['guardian_phone'] = $gpe;
     }
 
-    // guardian_email (optional + format)
-    if ($values['guardian_email'] !== '' && !filter_var($values['guardian_email'], FILTER_VALIDATE_EMAIL)) {
-        $errors['guardian_email'] = 'Please enter a valid email address, or leave it blank.';
+    // guardian_email (required + format)
+    if ($values['guardian_email'] === '') {
+        $errors['guardian_email'] = 'Guardian email is required.';
+    } elseif (!filter_var($values['guardian_email'], FILTER_VALIDATE_EMAIL)) {
+        $errors['guardian_email'] = 'Please enter a valid email address.';
     }
 
     // program_applied / class level (required + whitelist)
@@ -455,37 +457,10 @@ $csrfToken = generateCsrfToken();
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Apply — School Admissions</title>
-    <style>
-        body { font-family: system-ui, sans-serif; margin: 2rem; color: #222; background: #fafafa; }
-        main { max-width: 600px; margin: 0 auto; }
-        h1 { font-size: 1.4rem; }
-        h2 { font-size: 1rem; margin: 1.5rem 0 .75rem; color: #444; border-bottom: 1px solid #e5e5e5; padding-bottom: .3rem; }
-        a { color: #2563eb; text-decoration: none; }
-        a:hover { text-decoration: underline; }
-        label { display: block; margin-bottom: 1rem; font-size: .9rem; color: #333; }
-        .req { color: #b91c1c; }
-        input[type=text], input[type=email], input[type=tel], input[type=date], input[type=file], select, textarea {
-            width: 100%; box-sizing: border-box; padding: .5rem .6rem; margin-top: .25rem;
-            border: 1px solid #ccc; border-radius: 5px; font-size: 1rem; background: #fff; }
-        textarea { min-height: 5rem; resize: vertical; font-family: inherit; }
-        input.invalid, select.invalid, textarea.invalid { border-color: #dc2626; box-shadow: 0 0 0 2px rgba(220,38,38,.12); }
-        .radios { margin-top: .35rem; display: flex; gap: 1.25rem; }
-        .radios label { display: inline-flex; align-items: center; gap: .35rem; margin: 0; font-size: .95rem; }
-        .field-error { color: #b91c1c; font-size: .8rem; margin: -0.6rem 0 1rem; }
-        .btn { background: #2563eb; color: #fff; border: 0; padding: .6rem 1.2rem; border-radius: 5px;
-            font-size: 1rem; cursor: pointer; }
-        .btn:hover { background: #1d4ed8; }
-        .errors { background: #fdecec; border: 1px solid #f3b7b7; color: #a12020; padding: .6rem .8rem;
-            border-radius: 5px; margin-bottom: 1rem; }
-        .confirm { background: #e7f6ec; border: 1px solid #b7e0c4; color: #14532d; padding: 1.5rem;
-            border-radius: 8px; text-align: center; }
-        .confirm .ref { font-size: 1.4rem; font-weight: 700; letter-spacing: .04em; margin: .75rem 0;
-            font-family: ui-monospace, monospace; }
-        .hint { color: #888; font-weight: normal; }
-        .note { color: #666; font-size: .82rem; margin: 0 0 1rem; }
-    </style>
+    <link rel="stylesheet" href="/niitproject/public/assets/style.css">
 </head>
-<body>
+<body class="auth">
+<?php include __DIR__ . '/../includes/public_header.php'; ?>
     <main>
         <?php if ($confirmationRef !== null): ?>
 
@@ -590,7 +565,7 @@ $csrfToken = generateCsrfToken();
                 </label>
                 <?php if (isset($errors['guardian_phone'])): ?><p class="field-error"><?= e($errors['guardian_phone']) ?></p><?php endif; ?>
 
-                <label>Guardian email <span class="hint">(optional)</span>
+                <label>Guardian email <span class="req">*</span>
                     <input type="email" name="guardian_email" value="<?= e($values['guardian_email']) ?>"
                            class="<?= isset($errors['guardian_email']) ? 'invalid' : '' ?>">
                 </label>

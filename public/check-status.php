@@ -109,44 +109,10 @@ $csrfToken = generateCsrfToken();
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Check Application Status — School Admissions</title>
-    <style>
-        body { font-family: system-ui, sans-serif; margin: 2rem; color: #222; background: #fafafa; }
-        main { max-width: 480px; margin: 0 auto; }
-        h1 { font-size: 1.4rem; }
-        a { color: #2563eb; text-decoration: none; }
-        a:hover { text-decoration: underline; }
-        label { display: block; margin-bottom: 1rem; font-size: .9rem; color: #333; }
-        .req { color: #b91c1c; }
-        input[type=text], input[type=email] { width: 100%; box-sizing: border-box; padding: .5rem .6rem;
-            margin-top: .25rem; border: 1px solid #ccc; border-radius: 5px; font-size: 1rem; }
-        input.invalid { border-color: #dc2626; box-shadow: 0 0 0 2px rgba(220,38,38,.12); }
-        .field-error { color: #b91c1c; font-size: .8rem; margin: -0.6rem 0 1rem; }
-        .btn { background: #2563eb; color: #fff; border: 0; padding: .6rem 1.2rem; border-radius: 5px;
-            font-size: 1rem; cursor: pointer; }
-        .btn:hover { background: #1d4ed8; }
-        .errors { background: #fdecec; border: 1px solid #f3b7b7; color: #a12020; padding: .6rem .8rem;
-            border-radius: 5px; margin-bottom: 1rem; }
-        .notice { background: #fff7ed; border: 1px solid #fed7aa; color: #9a3412; padding: .8rem 1rem;
-            border-radius: 6px; margin-bottom: 1rem; }
-        .card { background: #fff; border: 1px solid #e5e5e5; border-radius: 8px; padding: 1.25rem 1.5rem;
-            margin-bottom: 1.5rem; }
-        .card h2 { margin: 0 0 1rem; font-size: 1.1rem; }
-        .row { display: flex; justify-content: space-between; padding: .4rem 0; border-bottom: 1px solid #f0f0f0; font-size: .95rem; }
-        .row:last-child { border-bottom: 0; }
-        .row .k { color: #666; }
-        .row .v { font-weight: 600; text-align: right; }
-        .badge { display: inline-flex; align-items: center; gap: .4rem; padding: .2rem .6rem; border-radius: 999px;
-            font-size: .85rem; font-weight: 600; }
-        .badge::before { content: ''; width: .55rem; height: .55rem; border-radius: 50%; background: currentColor; }
-        .badge-pending  { background: #fef9c3; color: #854d0e; }
-        .badge-accepted { background: #dcfce7; color: #166534; }
-        .badge-declined { background: #fee2e2; color: #991b1b; }
-        .badge-unknown  { background: #eee; color: #555; }
-        .accepted-note { background: #ecfdf5; border: 1px solid #a7f3d0; color: #065f46; padding: .8rem 1rem;
-            border-radius: 6px; margin-top: 1rem; font-size: .95rem; }
-    </style>
+    <link rel="stylesheet" href="/niitproject/public/assets/style.css">
 </head>
-<body>
+<body class="auth">
+<?php include __DIR__ . '/../includes/public_header.php'; ?>
     <main>
         <h1>Check Application Status</h1>
 

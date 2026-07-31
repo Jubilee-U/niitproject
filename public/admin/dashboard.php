@@ -33,6 +33,7 @@ $cards = [
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Dashboard — Admin</title>
+    <link rel="stylesheet" href="/niitproject/public/assets/style.css">
     <style>
         body { font-family: system-ui, sans-serif; margin: 0; color: #222; background: #f4f5f7; }
         .topbar { background: #1e293b; color: #fff; padding: .8rem 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .5rem; }
@@ -58,17 +59,19 @@ $cards = [
     </style>
 </head>
 <body>
-    <div class="topbar">
-        <span class="brand">Admin Portal</span>
-        <nav>
+    <?php include __DIR__ . '/../../includes/admin_header.php'; ?>
+    
+    <!-- <div class="topbar"> -->
+        <!-- <span class="brand">Admin Portal</span> -->
+        <!-- <nav>
             <a href="dashboard.php" class="active">Dashboard</a>
             <a href="applicants/index.php">Applicants</a>
             <a href="teachers/index.php">Teachers</a>
             <a href="subjects/index.php">Subjects</a>
             <a href="announcements/index.php">Announcements</a>
-            <a href="/logout.php">Log out</a>
-        </nav>
-    </div>
+            <a href="../logout.php">Log out</a>
+        </nav> -->
+    <!-- </div> -->
 
     <main>
         <h1>Dashboard</h1>

@@ -51,7 +51,8 @@ function truncate(?string $text, int $limit = 90): string
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Announcements — Admin</title>
-    <style>
+    <link rel="stylesheet" href="/niitproject/public/assets/style.css">
+    <!-- <style>
         body { font-family: system-ui, sans-serif; margin: 2rem; color: #222; background: #fafafa; }
         main { max-width: 820px; margin: 0 auto; }
         h1 { font-size: 1.4rem; margin: 0; }
@@ -71,9 +72,10 @@ function truncate(?string $text, int $limit = 90): string
         button.link-danger:hover { color: #7f1414; }
         .flash { background: #e7f6ec; border: 1px solid #b7e0c4; color: #1c7a3f; padding: .6rem .8rem; border-radius: 5px; margin-bottom: 1rem; }
         .muted { color: #888; }
-    </style>
+    </style> -->
 </head>
 <body>
+    <?php include __DIR__ . '/../../../includes/admin_header.php'; ?>
     <main>
         <div class="header-row">
             <h1>Announcements</h1>
