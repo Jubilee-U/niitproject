@@ -3,10 +3,6 @@
    Single design system. Palette, type, and a recurring thin gold motif.
    ========================================================================== */
 
-   /* Force these core rules to win over any leftover inline <style> blocks */
-
-
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap');
 
 :root {
@@ -72,7 +68,7 @@ a:hover { text-decoration: underline; }
 /* ── Site header / nav (admin + student) ─────────────────────────────────── */
 /* Signature motif: a thin 3px gold rule under the header, echoed under the
    active nav item. */
-.site-header { background: var(--navy-950); border-bottom: 3px solid var(--gold-500); }
+.site-header { background: linear-gradient(135deg, var(--navy-950), var(--navy-700)); border-bottom: 3px solid var(--gold-500); }
 .site-header-inner {
     max-width: 960px; margin: 0 auto; padding: .85rem 1.25rem;
     display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .4rem .75rem;
@@ -95,7 +91,9 @@ main { max-width: 960px; margin: 1.5rem auto; padding: 0 1.25rem; }
 .signed-in { color: var(--slate-400); font-size: .85rem; margin: 0 0 1.25rem; }
 
 /* ── Cards ───────────────────────────────────────────────────────────────── */
-.card { background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem 1.5rem; margin-bottom: 1.25rem; }
+.card { background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem 1.75rem; margin-bottom: 1.25rem;
+    box-shadow: 0 1px 2px rgba(15, 36, 68, .04); transition: box-shadow .18s ease; }
+.card:hover { box-shadow: 0 6px 20px rgba(15, 36, 68, .09); }
 .card h2 { margin-top: 0; }
 
 /* ── Buttons ─────────────────────────────────────────────────────────────── */
@@ -160,14 +158,39 @@ form.inline { display: inline; margin: 0; }
 .badge-pending  { background: var(--amber-bg); color: var(--amber); }
 .badge-declined { background: var(--red-bg);   color: var(--red); }
 .badge-unknown  { background: #ECECEC; color: #555; }
+/* Neutral role badge (admin / student) — reuses the .badge base above, so any
+   role pill you add renders at the exact same size, radius and weight as the
+   status pills. Usage: class="badge badge-role". */
+.badge-role     { background: rgba(30, 67, 128, .10); color: var(--navy-700); }
 
 /* ── Dashboard stat cards ────────────────────────────────────────────────── */
 .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(165px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
 .stat { background: #fff; border: 1px solid var(--border); border-left: 4px solid var(--navy-700); border-radius: 8px;
-    padding: 1.2rem 1.25rem; text-decoration: none; color: inherit; display: block; transition: box-shadow .15s, transform .15s; }
-.stat:hover { box-shadow: 0 3px 10px rgba(15, 36, 68, .1); transform: translateY(-1px); text-decoration: none; }
+    padding: 1.4rem 1.5rem; text-decoration: none; color: inherit;
+    display: flex; flex-wrap: wrap; align-items: flex-start; column-gap: .5rem;
+    transition: box-shadow .18s ease, transform .18s ease; }
+.stat:hover { box-shadow: 0 10px 26px rgba(15, 36, 68, .16); transform: translateY(-3px); text-decoration: none; }
+.stat .label, .stat .value { flex: 0 0 100%; } /* keep text stacked full-width; the icon sits alone on the top line */
 .stat .label { color: var(--slate-400); font-size: .85rem; }
 .stat .value { font-family: var(--font-head); font-size: 2.1rem; font-weight: 700; line-height: 1.1; margin-top: .3rem; color: var(--navy-950); }
+
+/* Optional icon chip for a stat card. Drop a <span class="stat-icon">📋</span>
+   anywhere inside the .stat in your HTML — order:-1 + margin-left:auto float it
+   to the top-right regardless of source position. Default tint is the blue
+   accent; add a tint-* modifier to match a card's accent colour. */
+.stat-icon {
+    order: -1; margin-left: auto;
+    width: 40px; height: 40px;
+    display: inline-flex; align-items: center; justify-content: center;
+    border-radius: 10px;
+    font-size: 1.3rem; line-height: 1;
+    background: rgba(37, 99, 235, .10); /* blue accent at low opacity */
+    color: #2563EB;
+}
+.stat-icon.tint-green  { background: rgba(22, 163, 74, .12);  color: #16A34A; }
+.stat-icon.tint-amber  { background: rgba(217, 119, 6, .12);  color: #D97706; }
+.stat-icon.tint-red    { background: rgba(220, 38, 38, .12);  color: #DC2626; }
+.stat-icon.tint-purple { background: rgba(124, 58, 237, .12); color: #7C3AED; }
 
 /* ── Quick / manage link chips ───────────────────────────────────────────── */
 .navlinks, .quicklinks { display: flex; gap: 1rem; flex-wrap: wrap; }
@@ -227,6 +250,30 @@ ul.docs li:last-child { border-bottom: 0; }
 .public-header .tagline { color: var(--slate-400); font-size: .9rem; margin-top: .3rem; }
 .public-header + main { margin-top: 1.25rem; }
 
+/* Round icon badge above an auth form heading (e.g. login). */
+.auth-icon {
+    width: 64px; height: 64px; margin: 0 auto 1rem;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 50%; background: rgba(41, 82, 204, .1);
+    font-size: 1.8rem; line-height: 1;
+}
+
+/* Inputs with a leading icon and an optional trailing toggle button. The wrap
+   carries the input's top margin so the absolutely-positioned icon/toggle
+   centre on the field itself. */
+.input-icon-wrap { position: relative; display: block; margin-top: .25rem; }
+.input-icon-wrap input { margin-top: 0; padding-left: 2.5rem; }
+.input-icon-wrap.has-toggle input { padding-right: 2.5rem; }
+.input-icon {
+    position: absolute; left: .75rem; top: 50%; transform: translateY(-50%);
+    color: var(--slate-400); font-size: 1rem; line-height: 1; pointer-events: none;
+}
+.pw-toggle {
+    position: absolute; right: .4rem; top: 50%; transform: translateY(-50%);
+    background: none; border: 0; margin: 0; padding: .3rem; cursor: pointer;
+    font-size: 1.05rem; line-height: 1; color: var(--slate-400);
+}
+
 /* ── Responsive ──────────────────────────────────────────────────────────── */
 @media (max-width: 560px) {
     .grid { grid-template-columns: 1fr; gap: .1rem 0; }
@@ -237,5 +284,3 @@ ul.docs li:last-child { border-bottom: 0; }
 @media (prefers-reduced-motion: reduce) {
     .stat { transition: none; }
 }
-
-         

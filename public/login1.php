@@ -12,7 +12,7 @@ startSecureSession();
 $existing = getCurrentUser($pdo);
 if ($existing !== null) {
     header('Location: ' . ($existing['role'] === 'admin'
-       ? '/niitproject/public/admin/dashboard.php'
+        ? '/niitproject/public/admin/dashboard.php'
         : '/niitproject/public/student/dashboard.php'   ));
     exit;
 }
@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Re-read the (now authenticated) user to route by role.
             $user = getCurrentUser($pdo);
             header('Location: ' . ($user !== null && $user['role'] === 'admin'
-                  ? '/niitproject/public/admin/dashboard.php'
+                ? '/niitproject/public/admin/dashboard.php'
                 : '/niitproject/public/student/dashboard.php'));
             exit; // always exit after a redirect so no page body is emitted
         }
@@ -54,13 +54,6 @@ $csrfToken = generateCsrfToken();
 // Safely reflect the previously typed email back into the field on error.
 $emailValue = htmlspecialchars((string) ($_POST['email'] ?? ''), ENT_QUOTES, 'UTF-8');
 
-// One-shot success flash (e.g. after a password reset redirect).
-$flash = null;
-if (!empty($_SESSION['flash'])) {
-    $flash = (string) $_SESSION['flash'];
-    unset($_SESSION['flash']);
-}
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -68,18 +61,13 @@ if (!empty($_SESSION['flash'])) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sign in — School Admission System</title>
-        <link rel="stylesheet" href="/niitproject/public/assets/style.css">
-
+    <link rel="stylesheet" href="/niitproject/public/assets/style.css">
 </head>
 <body class="auth">
 <?php include __DIR__ . '/../includes/public_header.php'; ?>
     <main>
         <div class="auth-icon">🏫</div>
         <h1>Sign in</h1>
-
-        <?php if ($flash !== null): ?>
-            <p class="flash"><?= htmlspecialchars($flash, ENT_QUOTES, 'UTF-8') ?></p>
-        <?php endif; ?>
 
         <?php if ($error !== ''): ?>
             <p class="error" role="alert"><?= htmlspecialchars($error, ENT_QUOTES, 'UTF-8') ?></p>
@@ -104,8 +92,6 @@ if (!empty($_SESSION['flash'])) {
                     <button type="button" class="pw-toggle" id="pwToggle" aria-label="Show password">👁</button>
                 </span>
             </label>
-
-            <p style="margin: -.5rem 0 1rem; font-size: .85rem;"><a href="forgot-password.php">Forgot password?</a></p>
 
             <button type="submit" class="btn btn-block">Sign in</button>
         </form>
